@@ -1,11 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './routes';
-import { errorHandlingMiddleware } from './middlewares';
+import { errorHandlingMiddleware, authMiddleware } from './middlewares';
 import {initDb} from './repository/db';
 
 const app = express();
 
+app.use(authMiddleware);
 app.use(bodyParser.json());
 app.use('/', routes);
 app.use(errorHandlingMiddleware);

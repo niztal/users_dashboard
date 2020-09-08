@@ -1,6 +1,6 @@
 import express from 'express';
 import userDao from '../repository/userDao';
-import createToken from '../utils/tokenGenerator';
+import {createToken} from '../utils/token';
 
 const router = express.Router();
 

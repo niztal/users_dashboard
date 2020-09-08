@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "mongodb": "^3.6.1",
-    "njwt": "^1.0.0",
-    "secure-random": "^1.1.2"
+    "njwt": "^1.0.0"
   }
 }
