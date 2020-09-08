@@ -1,23 +1,31 @@
-import {MongoClient as client} from 'mongodb';
+import { ok } from "assert";
+import { MongoClient as client } from "mongodb";
+
+//TODO: change to env variable
+const mongoUrl = 'mongodb://localhost:27017';
 
 let _db;
 
-//TODO: get mongoUrl from env variable
-
-const initDb = () => {
-    client.connect(mongoUrl, (err, client) => {
+const initDb = (callback) => {
+    if (_db) {
+        console.warn("Trying to init DB again!");
+        return callback(null, _db);
+    }
+    client.connect(mongoUrl, { useUnifiedTopology: true }, (err, client) => {
         if (err) {
-            throw {code: 500, message: 'network error'};
+            return callback(err);
         }
-        _db = client.db('users');
+        _db = client.db('usersDB');
+        return callback(null, _db);
     });
 }
 
 const getDb = () => {
-    if (_db) {
-        initDb();
-    }
+    ok(_db, "Db has not been initialized. Please called init first.");
     return _db;
 }
 
-module.exports = getDb;
+module.exports = {
+    getDb,
+    initDb
+};

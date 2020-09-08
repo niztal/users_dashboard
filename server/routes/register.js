@@ -9,8 +9,8 @@ router.post('/', async (req, res, next) => {
         const error = { status: 400, message: 'missing registration information' }
         next(error);
     } else {
-        userDao.createUser(email, password);
-        res.status(200).send();
+        await userDao.createUser(email, password);
+        res.status(201).send();
     }
 });
 
