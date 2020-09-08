@@ -1,5 +1,5 @@
 import { ok } from "assert";
-import { MongoClient as client } from "mongodb";
+import { MongoClient as client, ObjectID } from "mongodb";
 
 //TODO: change to env variable
 const mongoUrl = 'mongodb://localhost:27017';
@@ -25,7 +25,12 @@ const getDb = () => {
     return _db;
 }
 
+const getEntityKey = (entityId) => {
+    return new ObjectID(entityId);
+}
+
 module.exports = {
     getDb,
-    initDb
+    initDb,
+    getEntityKey
 };

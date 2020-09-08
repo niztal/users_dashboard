@@ -1,4 +1,4 @@
-import { getDb } from './db';
+import { getDb, getEntityKey } from './db';
 
 const userDao = {
     createUser: async (username, password) => {
@@ -8,6 +8,11 @@ const userDao = {
     getUser: async (username, password) => {
         const db = getDb();
         return await db.collection('users').findOne({ username, password });
+    },
+    getUserById: async (userId) => {
+        const db = getDb();
+        const userKey = getEntityKey(userId);
+        return await db.collection('users').findOne(userKey);
     }
 }
 
