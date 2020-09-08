@@ -1,9 +1,13 @@
-import {getDb} from './db';
+import { getDb } from './db';
 
 const userDao = {
-    createUser: async (email, password) => {
+    createUser: async (username, password) => {
         const db = getDb();
-        await db.collection('users').insertOne({ email, password });
+        await db.collection('users').insertOne({ username, password });
+    },
+    getUser: async (username, password) => {
+        const db = getDb();
+        return await db.collection('users').findOne({ username, password });
     }
 }
 
