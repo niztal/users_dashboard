@@ -1,9 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import routes from './routes';
 import { errorHandlingMiddleware, authMiddleware } from './middlewares';
 import {initDb} from './repository/db';
 
+dotenv.config();
 const app = express();
 
 app.use(authMiddleware);

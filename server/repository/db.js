@@ -1,12 +1,10 @@
 import { ok } from "assert";
 import { MongoClient as client, ObjectID } from "mongodb";
 
-//TODO: change to env variable
-const mongoUrl = 'mongodb://localhost:27017';
-
 let _db;
 
 const initDb = (callback) => {
+    const mongoUrl = process.env.DB_URL;
     if (_db) {
         console.warn("Trying to init DB again!");
         return callback(null, _db);

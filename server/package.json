@@ -19,6 +19,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "mongodb": "^3.6.1",
     "njwt": "^1.0.0"
   }
