@@ -1,6 +1,6 @@
 import express from 'express';
 import userDao from '../repository/userDao';
-import {createToken} from '../utils/token';
+import { createToken } from '../utils/token';
 
 const router = express.Router();
 
@@ -15,6 +15,7 @@ router.post('/', async (req, res, next) => {
         if (!user) {
             throw { status: 401, message: "User unauthorized to log in" }
         } else {
+            userDao.updateUser(user._id, { isLoggedIn: true })
             const token = createToken(user._id);
             res.send({ token }).status(200);
         }

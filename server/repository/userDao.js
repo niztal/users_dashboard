@@ -13,6 +13,16 @@ const userDao = {
         const db = getDb();
         const userKey = getEntityKey(userId);
         return await db.collection('users').findOne(userKey);
+    },
+    getUsers: (query) => {
+        const db = getDb();
+        return db.collection('users').find(query);
+    },
+    updateUser: async (userId, values) => {
+        const db = getDb();
+        const userKey = getEntityKey(userId);
+        const newValues = { $set: values };
+        return await db.collection('users').updateOne({ _id: userKey }, newValues);
     }
 }
 
