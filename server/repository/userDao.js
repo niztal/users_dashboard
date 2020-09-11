@@ -3,7 +3,7 @@ import { getDb, getEntityKey } from './db';
 const userDao = {
     createUser: async (username, password) => {
         const db = getDb();
-        await db.collection('users').insertOne({ username, password });
+        return await db.collection('users').insertOne({ username, password });
     },
     getUser: async (username, password) => {
         const db = getDb();
@@ -14,6 +14,7 @@ const userDao = {
         const userKey = getEntityKey(userId);
         return await db.collection('users').findOne(userKey);
     },
+    //TODO: move to async
     getUsers: (query) => {
         const db = getDb();
         return db.collection('users').find(query);
