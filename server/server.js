@@ -8,9 +8,9 @@ import {initDb} from './repository/db';
 dotenv.config();
 const app = express();
 
+app.use(express.static('public'))
 app.use(authMiddleware);
 app.use(bodyParser.json());
-app.use(express.static('public'))
 app.use('/', routes);
 app.use(errorHandlingMiddleware);
 
