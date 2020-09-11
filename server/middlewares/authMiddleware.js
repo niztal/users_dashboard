@@ -1,7 +1,7 @@
 import { decodeToken } from '../utils/token';
 
 export default (req, res, next) => {
-    if (req.url === '/login' || req.method === 'OPTIONS') {
+    if (req.url === '/login' || req.url === '/' || req.method === 'OPTIONS') {
         next();
     } else {
         const authorizationHeader = req.headers.authorization && req.headers.authorization.startsWith('Bearer ');

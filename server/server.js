@@ -10,6 +10,7 @@ const app = express();
 
 app.use(authMiddleware);
 app.use(bodyParser.json());
+app.use(express.static('public'))
 app.use('/', routes);
 app.use(errorHandlingMiddleware);
 

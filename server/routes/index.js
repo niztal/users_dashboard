@@ -10,8 +10,7 @@ router.use('/login', login);
 router.use('/user', user);
 
 router.get('/', (req, res) => {
-    //TODO: res.sendFile(__dirname + '/index.html')
-    res.send({message: 'Hello World!!'});
+    res.sendFile(__dirname + '/');
 });
 
 export default router;
