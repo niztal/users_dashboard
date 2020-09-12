@@ -10,11 +10,23 @@ router.post('/', async (req, res, next) => {
         const error = { status: 400, message: 'missing registration information' }
         next(error);
     } else {
-        userDao.createUser(username, password, Date.now()).then((response) => {
-            const user = response.ops[0];
-            const token = createToken(user._id);
-            res.status(201).send({ token });
-        });
+        let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        ip = ip === "::1" ? "127.0.0.1" : ip;
+        const userAgent = req.get('User-Agent');
+        userDao.createUser({
+            username,
+            password,
+            registrationTime: Date.now(),
+            ip,
+            userAgent,
+            isLoggedIn: true,
+            loginsCount: 1
+        })
+            .then((response) => {
+                const user = response.ops[0];
+                const token = createToken(user._id);
+                res.status(201).send({ userId: user._id, token });
+            });
     }
 });
 

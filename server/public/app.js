@@ -48,8 +48,8 @@ const register = () => {
         .then((response) => {
             if (response.ok) {
                 response.text().then(body => {
-                    const { token } = JSON.parse(body);
-                    history.pushState({ username, token }, "Welcome", "/welcome.html");
+                    const { userId, token } = JSON.parse(body);
+                    history.pushState({ userId, username, token }, "Welcome", "/dashboard.html");
                     location.reload();
                 });
             } else {

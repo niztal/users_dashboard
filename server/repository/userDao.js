@@ -1,9 +1,9 @@
 import { getDb, getEntityKey } from './db';
 
 const userDao = {
-    createUser: async (username, password, registrationTime) => {
+    createUser: async (userDetails) => {
         const db = getDb();
-        return await db.collection('users').insertOne({ username, password, registrationTime });
+        return await db.collection('users').insertOne(userDetails);
     },
     getUser: async (username, password) => {
         const db = getDb();

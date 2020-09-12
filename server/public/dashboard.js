@@ -43,7 +43,7 @@ const renderUserComponent = (user) => {
     const loginTimeDiv = document.createElement("div");
     loginTimeDiv.className = "user-data";
     const loginTime = document.createElement("span");
-    loginTime.innerHTML = new Date(user.loginTime).toLocaleString();
+    loginTime.innerHTML = new Date(user.loginTime || user.registrationTime).toLocaleString();
     loginTimeDiv.appendChild(loginTime);
 
     const ipDiv = document.createElement("div");
