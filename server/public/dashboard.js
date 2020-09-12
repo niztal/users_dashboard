@@ -77,6 +77,21 @@ const renderUserComponent = (user) => {
 const closePopup = () => {
     const userPopup = document.getElementById("user_popup");
     userPopup.style.display = "none";
+}
 
-
+const logout = () => {
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + history.state.token
+        },
+        body: JSON.stringify({userId: history.state.userId})
+    })
+    .then((response) => {
+        if (response.ok) {
+            history.state = {};
+            location.replace("/");
+        }
+    })
 }

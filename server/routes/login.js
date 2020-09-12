@@ -18,13 +18,13 @@ router.post('/', async (req, res, next) => {
             let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
             ip = ip === "::1" ? "127.0.0.1" : ip;
             const userAgent = req.get('User-Agent');
-            const loginsCount = user.loginCounts ? user.loginCounts ++ : 1;
+            const loginsCount = user.loginsCount + 1  || 1;
             userDao.updateUser(user._id,
                 {
                     isLoggedIn: true, loginTime: Date.now(), ip, userAgent, loginsCount
                 });
             const token = createToken(user._id);
-            res.send({ token }).status(200);
+            res.send({ userId : user._id, token }).status(200);
         }
     }
     catch (err) {
