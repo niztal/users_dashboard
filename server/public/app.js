@@ -16,7 +16,8 @@ const login = () => {
             if (response.ok) {
                 response.text().then(body => {
                     const { token } = JSON.parse(body);
-                    history.pushState({ username, token }, "Welcome", "/welcome.html")
+                    history.pushState({ username, token }, "Welcome", "/dashboard.html");
+                    location.reload();
                 });
             } else {
                 response.text().then(body => {
@@ -34,7 +35,7 @@ const login = () => {
 const register = () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    
+
     const registrationData = { username, password };
 
     fetch('/register', {
@@ -48,7 +49,8 @@ const register = () => {
             if (response.ok) {
                 response.text().then(body => {
                     const { token } = JSON.parse(body);
-                    history.pushState({ username, token }, "Welcome", "/welcome.html")
+                    history.pushState({ username, token }, "Welcome", "/welcome.html");
+                    location.reload();
                 });
             } else {
                 response.text().then(body => {

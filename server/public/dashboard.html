@@ -1,0 +1,29 @@
+<html>
+<header>
+    <link rel="stylesheet" href="styles.css">
+    <script src="dashboard.js"></script>
+</header>
+
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="welcome">
+                <h2 id="welcome">Welcome </h2>
+            </div>
+            <a href="#">Logout</a>
+        </div>
+        <div class="users_list" id="users_list"></div>
+        <div class="user_popup" id="user_popup">
+            <div class="user_popup_content">
+                <div class="closeBtn">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                </div>
+                <div id="user_agent" class="user-data"></div>
+                <span id="registration_time" class="user-data"></span>
+                <span id="logins_count" class="user-data"></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

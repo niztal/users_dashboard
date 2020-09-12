@@ -6,8 +6,8 @@ export default (req, res, next) => {
     } else {
         const authorizationHeader = req.headers.authorization && req.headers.authorization.startsWith('Bearer ');
         if (!authorizationHeader) {
-            console.error('no authorization found', req.method);
-            res.status(401).send();
+            console.error('no authorization found');
+            return res.redirect('/');
         } else {
             const jwtToken = req.headers.authorization.split('Bearer ')[1];
             decodeToken(jwtToken, (decodedToken) => {
@@ -15,7 +15,7 @@ export default (req, res, next) => {
                     req.userId = decodedToken.body.userId;
                     next();
                 } else {
-                    res.status(401).send();
+                    return res.redirect('/');
                 }
             });
         }
