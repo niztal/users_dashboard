@@ -24,6 +24,7 @@ router.post('/', async (req, res, next) => {
                     isLoggedIn: true, loginTime: Date.now(), ip, userAgent, loginsCount
                 });
             const token = createToken(user._id);
+            res.setHeader("X-REFRESH", process.env.REFRESH);
             res.send({ userId : user._id, token }).status(200);
         }
     }

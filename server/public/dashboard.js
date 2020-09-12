@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('welcome').innerHTML += history.state.username;
 
+    setInterval(() => { getUsersList() }, history.state.refresh);
+
     getUsersList();
 });
 
@@ -16,6 +18,7 @@ const getUsersList = () => {
             if (response.ok) {
                 response.text().then((body) => {
                     const usersList = document.getElementById('users_list');
+                    usersList.innerHTML = "";
                     const users = JSON.parse(body);
                     users.forEach((user) => {
                         const newUserComponent = renderUserComponent(user);
@@ -86,12 +89,12 @@ const logout = () => {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + history.state.token
         },
-        body: JSON.stringify({userId: history.state.userId})
+        body: JSON.stringify({ userId: history.state.userId })
     })
-    .then((response) => {
-        if (response.ok) {
-            history.state = {};
-            location.replace("/");
-        }
-    })
+        .then((response) => {
+            if (response.ok) {
+                history.state = {};
+                location.replace("/");
+            }
+        })
 }

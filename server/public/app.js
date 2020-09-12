@@ -15,8 +15,9 @@ const login = () => {
         .then((response) => {
             if (response.ok) {
                 response.text().then(body => {
+                    const refresh = response.headers.get("X-REFRESH");
                     const { userId, token } = JSON.parse(body);
-                    history.pushState({ userId, username, token }, "Welcome", "/dashboard.html");
+                    history.pushState({ userId, username, token, refresh: parseInt(refresh) }, "Welcome", "/dashboard.html");
                     location.reload();
                 });
             } else {
@@ -48,8 +49,9 @@ const register = () => {
         .then((response) => {
             if (response.ok) {
                 response.text().then(body => {
+                    const refresh = response.headers.get("X-REFRESH");
                     const { userId, token } = JSON.parse(body);
-                    history.pushState({ userId, username, token }, "Welcome", "/dashboard.html");
+                    history.pushState({ userId, username, token, refresh: parseInt(refresh }, "Welcome", "/dashboard.html");
                     location.reload();
                 });
             } else {

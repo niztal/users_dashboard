@@ -25,6 +25,7 @@ router.post('/', async (req, res, next) => {
             .then((response) => {
                 const user = response.ops[0];
                 const token = createToken(user._id);
+                res.setHeader("X-REFRESH", process.env.REFRESH);
                 res.status(201).send({ userId: user._id, token });
             });
     }
