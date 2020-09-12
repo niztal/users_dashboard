@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password) {
-        const error = { status: 400, message: 'missing registration information' }
+        const error = { status: 400, message: 'missing registration information' };
         next(error);
     } else {
         let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;

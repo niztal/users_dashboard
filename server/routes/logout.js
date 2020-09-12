@@ -7,16 +7,16 @@ router.post('/', async (req, res, next) => {
     try {
         const { userId } = req.body;
         if (!userId) {
-            const error = { status: 400, message: 'missing information' }
+            const error = { status: 400, message: 'missing information' };
             next(error);
         }
         if (req.userId !== userId) {
-            const error = {status: 403, message: 'wrong user id'}
+            const error = { status: 403, message: 'wrong user id' };
             next(error);
         }
         const user = await userDao.getUserById(userId);
         if (!user) {
-            throw { status: 404, message: "User not found" }
+            throw { status: 404, message: "User not found" };
         } else {
             userDao.updateUser(user._id,
                 {
