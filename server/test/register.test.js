@@ -2,7 +2,7 @@ import request from 'supertest';
 import app from '../server';
 const { MongoClient } = require('mongodb');
 
-describe('login', () => {
+describe('register', () => {
     let connection;
     let db;
 
@@ -21,7 +21,7 @@ describe('login', () => {
 
     it('should fail if missing username or password', async () => {
         const res = await request(app)
-            .post('/login')
+            .post('/register')
             .send();
         expect(res.statusCode).toEqual(400);
     }),

@@ -20,3 +20,5 @@ initDb(() => {
         console.log("server is up at port: " + port);
     });
 })
+
+module.exports = app;

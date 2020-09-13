@@ -35,10 +35,8 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ],
-    "preset": "@shelf/jest-mongodb",
-    "roots": [
-      "<rootDir>/test/"
-    ]
+    "roots": ["<rootDir>/", "<rootDir>/test/"]
+
   },
   "config": {
     "mongodbMemoryServer": {
