@@ -11,7 +11,7 @@ REFRESH=3000`
 
 ## Run ##
 
-`npm run`
+`npm start`
 
 ## Test ##
 
