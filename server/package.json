@@ -5,23 +5,44 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Nitzan Tal",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "babel": "^6.23.0",
+    "babel-jest": "^26.3.0",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.19.0",
     "eslint": "^7.9.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.4"
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
     "dotenv": "^8.2.0",
     "mongodb": "^3.6.1",
     "njwt": "^1.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "preset": "@shelf/jest-mongodb",
+    "roots": [
+      "<rootDir>/test/"
+    ]
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "latest"
+    }
   }
 }
